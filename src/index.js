@@ -1,9 +1,14 @@
 import { Screen } from './screen';
 import { myImage} from './myimage';
-export var myGame;
+import { Node } from './node';
+
+
 //global variables
 var time
+var myGame;
 
+var nodeM = new Node();
+nodeM.notify();
 
 window.onload = function()
 {

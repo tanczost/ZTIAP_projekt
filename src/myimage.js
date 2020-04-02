@@ -17,7 +17,6 @@ export class myImage extends canvasFunctions
         this.moveAngle = 0; 
         this.image = new Image();
         this.image.src = src;
-        console.log(src);
     }
     creat()
     {

@@ -1,22 +1,3 @@
-//import { Circle } from './circle';
-
-
-
-export var myCanvas =
-{
-    context : document.getElementById("myCanvas").getContext("2d"), //context == canvas
-    
-    
-    createCircle: function(x, y, radius, color)
-    {
-        this.context.beginPath();
-        this.context.arc(x, y, radius ,0 , Math.PI * 2 );
-        this.context.fillStyle = color;
-        this.context.fill();
-        this.context.stroke();
-    }
-}
-
 export class canvasFunctions
 {
     constructor()
