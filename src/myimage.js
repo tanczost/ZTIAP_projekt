@@ -3,9 +3,9 @@ import { canvasFunctions } from './objectCanvas';
 
 export class myImage extends canvasFunctions
 {
-    constructor(x, y, width, height, src, type)
+    constructor(x, y, width, height, src, type, name)
     {
-        super();
+        super(name);
         this.x = x;
         this.y = y;
         this.width = width;
@@ -17,6 +17,7 @@ export class myImage extends canvasFunctions
         this.moveAngle = 0; 
         this.image = new Image();
         this.image.src = src;
+        
     }
     creat()
     {

@@ -3,13 +3,11 @@ import { myImage } from './myimage';
 import { canvasFunctions } from './objectCanvas';
 import {Text } from './text'
 import { Circle } from './circle';
-import { myGame } from './index';
-
 export class Screen extends canvasFunctions
 {
-    constructor()
+    constructor(name)
     {
-        super();
+        super(name);
         
         this.score = 0;
         this.frames = 0;
@@ -58,13 +56,15 @@ export class Screen extends canvasFunctions
         //help Image
 
         //child objects
-        this.player = new myImage(500, 250, 38, 28, '../images/jet.png',"none"); //creat players object
+        this.add( this.player = new myImage(500, 250, 38, 28, '../images/jet.png',"none","player")); //creat players object
         this.backGround = new myImage(0, 0, 750, 500, '../images/background.png', "bg");  //creat background
         this.lifeImg = new myImage(100, 100, 128, 32, '../images/life3.png',"none"); 
         this.title = new Text(500, 120, "red", "100px");
         this.showScore = new Text(150, 70, "white", "50px");
 
         //childs
+
+        this.notify();
 
         
     }

@@ -1,7 +1,11 @@
-export class canvasFunctions
+import { Node } from './node';
+
+
+export class canvasFunctions extends Node
 {
-    constructor()
+    constructor(name)
     {
+        super(name);
         this.context = document.getElementById("myCanvas").getContext("2d"); //context == canvas
     }
     rotateObject(x, y, width, height, angle, image)

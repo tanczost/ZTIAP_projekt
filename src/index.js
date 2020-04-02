@@ -1,18 +1,16 @@
 import { Screen } from './screen';
 import { myImage} from './myimage';
-import { Node } from './node';
 
 
 //global variables
 var time
 var myGame;
 
-var nodeM = new Node();
-nodeM.notify();
+
 
 window.onload = function()
 {
-    myGame = new Screen();
+    myGame = new Screen("Screen");
     time = Date.now();
     main();
 }
@@ -34,10 +32,13 @@ window.onkeydown = (e) =>
     if(e.keyCode == 32 && myGame.shot) //shot
     {
         if(myGame.sound) myGame.shotSound.play();
-        myGame.player.myShots.push(new myImage(myGame.player.x + 2, myGame.player.y - 2, 5, 5, '../images/bullet.png', "none"));
+        var gol = new myImage(myGame.player.x + 2, myGame.player.y - 2, 5, 5, '../images/bullet.png', "none", "bullet");
+        myGame.player.myShots.push(gol);
+        myGame.player.add(gol);
         myGame.player.myShots[myGame.player.myShots.length - 1].speed = 5;
         myGame.player.myShots[myGame.player.myShots.length - 1].angle = myGame.player.angle;
         myGame.shot = false;
+        myGame.notify();
     }
     
 }
