@@ -1,0 +1,53 @@
+div{
+    text-align: center;
+    border: 1px solid black;
+    position: absolute;
+    left: 375px;
+    font-size: 40px;
+    width: 250px;
+    background-color: black;
+    color: white;
+    height: 45px;
+    cursor: pointer;
+}
+#startButton{
+    top: 205px;
+}
+#helpButton{
+    top: 270px;
+}
+#scoreButton{
+    top: 335px;
+}
+#backButton{
+    top:400px;
+    left:125px;
+}
+img{
+   position: absolute;
+   cursor: pointer;
+   top: 40px; 
+   width: 40px;
+   height: 40px;
+}
+#statusButton{
+    left: 750px;
+}
+#audioButton{
+    left: 830px;
+
+}
+#helpImg{
+    position: absolute;
+    left: 450px;
+    top: 50px;
+    width: 480px;
+    height: 400px;
+
+}
+#highScore{
+    background-color: transparent;
+    left: 400px;
+    height: 500px;
+    width: 600px;
+}
