@@ -64,8 +64,6 @@ export class Screen extends canvasFunctions
 
         //childs
 
-        this.notify();
-
         
     }
     mainMenu()

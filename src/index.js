@@ -5,6 +5,7 @@ import { myImage} from './myimage';
 //global variables
 var time
 var myGame;
+var numOfBullets = 0;
 
 
 
@@ -32,7 +33,8 @@ window.onkeydown = (e) =>
     if(e.keyCode == 32 && myGame.shot) //shot
     {
         if(myGame.sound) myGame.shotSound.play();
-        var gol = new myImage(myGame.player.x + 2, myGame.player.y - 2, 5, 5, '../images/bullet.png', "none", "bullet");
+        numOfBullets++;
+        var gol = new myImage(myGame.player.x + 2, myGame.player.y - 2, 5, 5, '../images/bullet.png', "none", "bullet" + numOfBullets);
         myGame.player.myShots.push(gol);
         myGame.player.add(gol);
         myGame.player.myShots[myGame.player.myShots.length - 1].speed = 5;

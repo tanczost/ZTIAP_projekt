@@ -11,19 +11,24 @@ export class Node
     }
     notify(parent)
     {
-        if(!parent) console.log("I'm parent "+this.name);
-        else console.log("I'm child, my parent is "+ parent);
-        if(this.myChilds == []) console.log("I've no childs");
 
-        var parent1 = this.name;
+        if(!parent) console.log("I'm root, my name is "+this.name);
 
-        for(var i = 0; i < this.myChilds.length; i++)
+        else console.log("I'm child of "+parent+", my name is "+this.name);
+
+        if(this.myChilds.length == 0)
         {
-           this.myChilds[i].notify(parent1);
+            console.log("I've no childs");
+            return;
         }
-    }
-    add(child)
-    {
-        this.myChilds.push(child);
-    }
+        else
+        {
+            var parent = this.name;
+
+            for(var i = 0; i < this.myChilds.length; i++)
+            {
+                this.myChilds[i].notify(parent);
+            }
+        }
+    } 
 }
