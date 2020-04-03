@@ -4,9 +4,9 @@ import { Bullet } from './bullet';
 
 export class Circle extends canvasFunctions
 {
-    constructor(x, y, radius, color,)
+    constructor(x, y, radius, color,name)
     {
-        super();
+        super(name);
 
         this.x = x;
         this.y = y;
@@ -19,6 +19,8 @@ export class Circle extends canvasFunctions
 
     creat()
     {
+        this.x += (this.speed * Math.sin(this.angle) * 1);
+        this.y -= (this.speed * Math.cos(this.angle) * 1);
         this.createCircle(this.x, this.y, this.radius,this.color);
     }
 

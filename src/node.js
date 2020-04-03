@@ -1,3 +1,5 @@
+
+
 export class Node
 {
     constructor(name)
@@ -27,8 +29,21 @@ export class Node
 
             for(var i = 0; i < this.myChilds.length; i++)
             {
-                this.myChilds[i].notify(parent);
+                if(this.myChilds[i]) this.myChilds[i].notify(parent);
+                
+            }
+        }
+    }
+    movement(dt)
+    {
+        for(var i = 0; i < this.myChilds.length; i++)
+        {
+            if(this.myChilds[i]) 
+            {
+                this.myChilds[i].creat();
+                this.myChilds[i].movement();
             }
         }
     } 
+    
 }

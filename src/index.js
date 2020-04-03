@@ -34,11 +34,11 @@ window.onkeydown = (e) =>
     {
         if(myGame.sound) myGame.shotSound.play();
         numOfBullets++;
-        var gol = new myImage(myGame.player.x + 2, myGame.player.y - 2, 5, 5, '../images/bullet.png', "none", "bullet" + numOfBullets);
-        myGame.player.myShots.push(gol);
-        myGame.player.add(gol);
-        myGame.player.myShots[myGame.player.myShots.length - 1].speed = 5;
-        myGame.player.myShots[myGame.player.myShots.length - 1].angle = myGame.player.angle;
+        //var gol = new myImage(myGame.player.x + 2, myGame.player.y - 2, 5, 5, '../images/bullet.png', "none", "bullet" + numOfBullets);
+        //myGame.player.myShots.push(gol);
+        myGame.player.add(new myImage(myGame.player.x + 2, myGame.player.y - 2, 5, 5, '../images/bullet.png', "none", "bullet" + numOfBullets));
+        myGame.player.myChilds[myGame.player.myChilds.length - 1].speed = 10;
+        myGame.player.myChilds[myGame.player.myChilds.length - 1].angle = myGame.player.angle;
         myGame.shot = false;
         myGame.notify();
     }

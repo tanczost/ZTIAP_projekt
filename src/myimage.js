@@ -13,7 +13,6 @@ export class myImage extends canvasFunctions
         this.type = type;
         this.speed = 0;
         this.angle = 0;
-        this.myShots = [];
         this.moveAngle = 0; 
         this.image = new Image();
         this.image.src = src;
@@ -29,13 +28,13 @@ export class myImage extends canvasFunctions
         {
             if((this.speed < 0 && this.speed > -2) || (this.speed > 0 && this.speed < 2)) this.speed *= 0.995;
             this.angle += this.moveAngle * Math.PI / 180;
-            var newX = this.speed* Math.sin(this.angle);
-            var newY = this.speed * Math.cos(this.angle);
+            this.x += this.speed* Math.sin(this.angle);
+            this.y -= this.speed * Math.cos(this.angle);
             
-            if(!(this.x + newX > 1000 || this.x + newX <= 0 || this.y - newY > 500 || this.y - newY <= 0))
+            /*if(!(this.x + newX > 1000 || this.x + newX <= 0 || this.y - newY > 500 || this.y - newY <= 0))
             {
                 this.x += newX; this.y -= newY;
-            }
+            }*/
             this.rotateObject(this.x, this.y, this.width, this.height, this.angle, this.image);
         }
     }
