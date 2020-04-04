@@ -68,6 +68,7 @@ export class Screen extends canvasFunctions
     {
         this.backGround.creat();
         this.title.creat("Bubble War");
+        this.playersName = false;
         this.frames = 0;
 
         /*button settings*/
@@ -213,10 +214,18 @@ export class Screen extends canvasFunctions
     }
     restartScreen()
     {
-        this.myChilds = this.myChilds.slice(0, 4);
 
+        if(!this.playersName) 
+        {
+            this.playersName = prompt("Enter your name!");
+        }
+        this.myChilds = this.myChilds.slice(0, 4); //delete bubbles from childs
+
+        if(this.frames) this.writeInStorage();
+        
         this.player.speed = this.player.moveAngle =  this.frames = 0;
         this.backGround.creat();
+        
         this.lifeImg.image.src = "../images/life3.png";
 
         this.statusButton.style.zIndex = this.audioButton.style.zIndex = -1;
@@ -230,9 +239,9 @@ export class Screen extends canvasFunctions
         this.title.creat("Game Over!");
         this.showScore.x = this.title.x;
         this.showScore.y = this.title.y + 80;
+        this.showScore.creat(this.playersName+"'s score: "+this.score);
         
 
-        //this.showScore.creat(this.this.playersName+"'s score: "+this.score);
         this.player.angle = 0;
         this.player.x = 500;
         this.player.y = 250;

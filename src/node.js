@@ -45,5 +45,35 @@ export class Node
             }
         }
     } 
+    writeInStorage()
+    {
+        var names = JSON.parse(localStorage.getItem('names'));
+        var scores = JSON.parse(localStorage.getItem('scores'));
+        var i;
+        /*for(i = 0; i < names.length; i++)
+        {
+            if(this.playersName === names[i])
+            {
+                names[i] = this.playersName; scores[i] = this.score; break;
+            }
+        }
+        if(i == names.length)
+        {
+            names.push(this.playersName); scores.push(this.score);
+        }*/
+
+        var i = names.includes(this.playersName);
+        if(i) scores[names.indexOf(this.playersName)] = this.score;
+        else {names.push(this.playersName); scores.push(this.score);}
+
+
+        localStorage.setItem('names',JSON.stringify(names));
+        localStorage.setItem('scores',JSON.stringify(scores));
+    }
+    readFromStorage()
+    {
+        var names = JSON.parse(localStorage.getItem('names'));
+        var scores = JSON.parse(localStorage.getItem('scores'));
+    }
     
 }
