@@ -74,6 +74,33 @@ export class Node
     {
         var names = JSON.parse(localStorage.getItem('names'));
         var scores = JSON.parse(localStorage.getItem('scores'));
+        var table = document.getElementById('scoreTable');
+        
+        for(var i = 0; i < scores.length; i++)
+        {
+            var maxIndex = i;
+            for(var j = i + 1; j < scores.length; j++)
+            {
+                if(scores[maxIndex] < scores[j]) maxIndex = j;
+            }
+            if(maxIndex != i)
+            {
+                [scores[maxIndex], scores[i]] = [scores[i], scores[maxIndex]];
+                [names[maxIndex], names[i]] = [names[i], names[maxIndex]];
+            }
+        }
+
+        var row = table.insertRow(0);
+
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+
+        cell1.innerHTML = "Tomi"
+        cell2.innerHTML = "35";
+        console.log(scores);
+        console.log(names);
+        
+
     }
     
 }

@@ -73,7 +73,7 @@ export class Screen extends canvasFunctions
 
         /*button settings*/
         for(var i = 0; i < this.buttons.length - 1; i++) this.buttons[i].change("zIndex", 1); //show buttons
-
+        document.getElementById('score').style.zIndex = -1;
         this.backButton.change("zIndex", -1);
         this.statusButton.style.zIndex = this.audioButton.style.zIndex = this.helpImg.style.zIndex = -1; 
 
@@ -222,7 +222,7 @@ export class Screen extends canvasFunctions
         this.myChilds = this.myChilds.slice(0, 4); //delete bubbles from childs
 
         if(this.frames) this.writeInStorage();
-        
+
         this.player.speed = this.player.moveAngle =  this.frames = 0;
         this.backGround.creat();
         
@@ -252,6 +252,12 @@ export class Screen extends canvasFunctions
     scoreScreen()
     {
         this.backGround.creat();
+        document.getElementById('score').style.zIndex = 1;
+        
+
+        
+
+        if(this.showScore.color != "red") this.readFromStorage();
         this.showScore.color = "red";
         this.showScore.creat("Best Players");
 
