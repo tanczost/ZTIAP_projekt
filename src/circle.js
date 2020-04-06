@@ -21,10 +21,9 @@ export class Circle extends canvasFunctions
     attack(object)
     {
         var vector = [(object.x -  -50 * Math.sin(object.angle))- this.x, (object.y + -50 * Math.cos(object.angle)) - this.y];
-        this.bubblesShot = new Bullet(this.x, this.y, vector[0], vector[1], 5, "green");
-
+        this.add(new Bullet(this.x, this.y, vector[0], vector[1], 5, "green"));
     }
-    collison(object) //controll collision m
+    collison(object) //controll collision
     {
         var vector = [(this.x + 2.5)  - object.x, (this.y - 2.5) - object.y];
         return (Math.sqrt(vector[0] * vector[0] + vector[1]*vector[1]) <=  (object.width + this.radius )  );

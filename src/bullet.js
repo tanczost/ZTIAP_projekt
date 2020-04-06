@@ -15,6 +15,7 @@ export class Bullet  extends canvasFunctions
         this.length = Math.sqrt(this.vector_x * this.vector_x + this.vector_y * this.vector_y);
         this.x = this.para_x + (this.vector_x * this.speed);
         this.y = this.para_y + (this.vector_y * this.speed);
+        this.name = "bullet";
         
     }
 
@@ -24,5 +25,6 @@ export class Bullet  extends canvasFunctions
         this.x = this.para_x + (this.vector_x * this.speed);
         this.y = this.para_y + (this.vector_y * this.speed);
         this.createCircle(this.x, this.y, this.width, this.color);
+        
     }
 }

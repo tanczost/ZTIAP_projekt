@@ -36,23 +36,4 @@ export class canvasFunctions extends Node
     {
         this.context.clearRect(x, y, width, height);
     }
-    deleteObject(object, parent)
-    {
-        console.log(parent.myChilds.length);
-
-         if(object)
-         {
-            if(object.x < -40 || object.x > 1100 || object.y < -40 || object.y > 600)
-            {
-                var index = parent.myChilds.indexOf(object) ;
-                var newArr = parent.myChilds.splice(0, index);
-                newArr = parent.myChilds.splice(index + 1, parent.myChilds.length);
-                parent.myChilds = newArr;
-                console.log(parent.myChilds.length);
-                return true;
-                
-            }
-        }
-    }
-
 }

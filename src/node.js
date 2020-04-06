@@ -44,8 +44,9 @@ export class Node
         {
             if(this.myChilds[i]) 
             {
-                this.myChilds[i].creat();
-                this.myChilds[i].movement();
+                if(this.myChilds[i].name == "bullet") this.myChilds[i].creat(dt);
+                else this.myChilds[i].creat();
+                this.myChilds[i].movement(dt);
             }
         }
     } 
@@ -105,6 +106,22 @@ export class Node
         console.log(names);
         
 
+    }
+    killMyChilds()
+    {
+        for(var i = 0; i < this.myChilds.length; i++)
+        {
+            var object = this.myChilds[i];
+
+            if(object.x < -40 || object.x > 1100 || object.y < -40 || object.y > 600)
+            {
+                var index = this.myChilds.indexOf(object);
+                this.myChilds.splice(index, 1);
+                continue;
+            }
+
+            object.killMyChilds();
+        }
     }
     
 }

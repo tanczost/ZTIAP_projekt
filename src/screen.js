@@ -115,92 +115,50 @@ export class Screen extends canvasFunctions
                 this.levelThree();
         }
         /***********************************/
+
+
         this.clear(0,0,1000,500); //clear the canvas
-        /*
-        for(var i = 0; i < this.myChilds.length; i++) 
-            for(var j = 0; j < this.myChilds[i].myChilds.length; j++) 
-                if(this.deleteObject(this.myChilds[i].myChilds[j], this.myChilds[i]))
-                    break;
-        /*******MOVEMENT'S OF OBJECTS********/
-        for(var i = 4; i < this.myChilds.length; i++)
-        {
-            if(this.myChilds[i]) 
-            {
-                if(this.player.collison(this.myChilds[i])) 
-                { 
-                    this.myChilds[i] = false;
-                    this.life--;
-                    if(this.life > 0 && this.sound) this.contactSound.play();
-                    else if(this.sound)  this.gameoverSound.play();
 
-                    this.player.x = Math.floor(Math.random() * 900); this.player.y = Math.floor(Math.random() * 400);
-                    if(this.life == 0)
-                    { 
-                        this.gameMode = 2; 
-                    }
-                    else this.lifeImg.image.src = (this.life == 2 ? "../images/life2.png" : "../images/life1.png");
-                    
-                    break;
-                    
-                } 
-                if(this.myChilds[i].bubblesShot)
-                {
-                    this.myChilds[i].bubblesShot.creat(dt);
-                    if(this.player.collison(this.myChilds[i].bubblesShot)) 
-                    { 
-                        this.myChilds[i].bubblesShot = false;
-                        this.life--;
-                        if(this.life > 0 && this.sound) this.contactSound.play();
-                        else if(this.sound) this.gameoverSound.play();
+        this.movement(dt); //move all objects
 
-                        this.player.x = Math.floor(Math.random() * 900); this.player.y = Math.floor(Math.random() * 400);
-                        if(this.life == 0)
-                        {
-                            this.gameMode = 2;
-                        }
-                        else this.lifeImg.image.src = (this.life == 2 ? "../images/life2.png" : "../images/life1.png");
-
-                    }
-                }    
-
-            }
-        }
-        this.movement(); //move all objects
         for(var i = 4; i < this.myChilds.length; i++)   //controll my shots and bubbles collison
         {
             for(var j = 0; j < this.player.myChilds.length; j++)
             { 
-                if(this.player.myChilds[j] && this.myChilds[i]) //if exist bullet and bubble
+                if(this.myChilds[i].collison(this.player.myChilds[j])) //if collision true
                 {
-                    if(this.myChilds[i].collison(this.player.myChilds[j])) //if collision true
-                    {
-                        if(this.sound)  this.matchSound.play();
-                        this.myChilds[i] = false;
-                        delete this.player.myChilds[j];
-                        this.score += 10; 
-                        continue;
-                    }
+                    if(this.sound)  this.matchSound.play();
+                    var index = this.myChilds.indexOf(this.myChilds[i]);
+                    this.myChilds.splice(index, 1);
+                    index = this.player.myChilds.indexOf(this.player.myChilds[i]);
+                    this.player.myChilds.splice(index, 1);
+                    this.score += 10; 
                 }
             }
-            if(this.myChilds[i].bubblesShot) //if bubble have a shot
-            {
-                this.myChilds[i].bubblesShot.creat(dt); // bubble's shot move
-                if(this.player.collison(this.myChilds[i].bubblesShot)) //controll the collison btw player and bubble's shot
-                { 
-                    this.myChilds[i].bubblesShot = false;
-                    this.life--;
-
-                    if(this.life > 0 && this.sound) this.contactSound.play();
-                    else if(this.sound) this.gameoverSound.play();
-
-                    this.player.x = Math.floor(Math.random() * 900); this.player.y = Math.floor(Math.random() * 400);
-
-                    if(this.life == 0) this.gameMode = 2;
-                    else this.lifeImg.image.src = (this.life == 2 ? "../images/life2.png" : "../images/life1.png");
-
-                }
-            }    
         }
+
+        var i;
+        for(i = 4;  i < this.myChilds.length; i++) //controll players collision /w other objects
+        {
+            if(this.player.collison(this.myChilds[i])) break;
+            var j = 0;
+            for(;  j < this.myChilds[i].myChilds.length; j++) if(this.player.collison(this.myChilds[i].myChilds[j])) break;
+            if(j !=  this.myChilds[i].myChilds.length) break;
+        }
+
+        if(i !=  this.myChilds.length) //if i ==  this.myChilds.length player doesnt have collision 
+        {
+            this.life--;
+            if(this.life > 0 && this.sound) this.contactSound.play();
+            else if(this.sound) this.gameoverSound.play();
+
+            this.player.x = Math.floor(Math.random() * 900); this.player.y = Math.floor(Math.random() * 400);
+
+            if(this.life == 0) this.gameMode = 2;
+            else this.lifeImg.image.src = (this.life == 2 ? "../images/life2.png" : "../images/life1.png");
+        }
+        this.killMyChilds(); //remove unecessery object
+
         /***********************************/
         
         /*******SET SCORE ARGUMENTs********/
@@ -351,7 +309,7 @@ export class Screen extends canvasFunctions
         {
             if(this.myChilds[i]) //if bubble exist
             {
-                if(this.frames % 200 == 0 && i % 15 == 0 ) this.myChilds[i].attack(this.player);
+                if(this.frames % 200 == 0 && i % 5 == 0 ) this.myChilds[i].attack(this.player);
             }
         }
     }
