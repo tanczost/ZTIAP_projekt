@@ -159,7 +159,6 @@ export class Screen extends canvasFunctions
         }
         this.killMyChilds(); //remove unecessery object
 
-        /***********************************/
         
         /*******SET SCORE ARGUMENTs********/
         this.showScore.x = 150;
