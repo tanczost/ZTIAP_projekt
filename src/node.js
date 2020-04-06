@@ -1,10 +1,14 @@
-
-
 export class Node
 {
-    constructor(name)
+    constructor(name, x, y, color)
     {
         this.name = name;
+        this.x = x;
+        this.y = y;
+        this.speed = 0;
+        this.angle = 0;
+        this.moveAngle = 0;
+        this.color = color;
         this.myChilds = [];
     }
     add(object)

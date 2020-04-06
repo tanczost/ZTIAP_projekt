@@ -3,9 +3,9 @@ import { Node } from './node';
 
 export class canvasFunctions extends Node
 {
-    constructor(name)
+    constructor(name, x, y, color)
     {
-        super(name);
+        super(name, x, y, color);
         this.context = document.getElementById("myCanvas").getContext("2d"); //context == canvas
     }
     rotateObject(x, y, width, height, angle, image)

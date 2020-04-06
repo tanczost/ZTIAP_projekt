@@ -44,7 +44,6 @@ export class Screen extends canvasFunctions
         this.shotSound = new Audio("../sounds/strela.mp3");
         this.matchSound = new Audio("../sounds/pop.mp3");
         this.gameoverSound = new Audio("../sounds/game_over.mp3");
-        this.gameoverSound = new Audio("../sounds/game_over.mp3");
         this.contactSound = new Audio("../sounds/kontakt.mp3");        
         //audio
 

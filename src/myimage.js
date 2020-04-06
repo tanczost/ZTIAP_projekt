@@ -5,15 +5,10 @@ export class myImage extends canvasFunctions
 {
     constructor(x, y, width, height, src, type, name)
     {
-        super(name);
-        this.x = x;
-        this.y = y;
+        super(name, x, y);
         this.width = width;
         this.height = height;
-        this.type = type;
-        this.speed = 0;
-        this.angle = 0;
-        this.moveAngle = 0; 
+        this.type = type; 
         this.image = new Image();
         this.image.src = src;
         

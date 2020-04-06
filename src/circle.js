@@ -6,14 +6,8 @@ export class Circle extends canvasFunctions
 {
     constructor(x, y, radius, color,name)
     {
-        super(name);
-
-        this.x = x;
-        this.y = y;
+        super(name, x, y, color);
         this.radius = radius;
-        this.color = color;
-        this.speed = 0;
-        this.angle = 0;
         this.bubblesShot = false;
     }
 
