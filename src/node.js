@@ -55,7 +55,7 @@ export class Node
         var names = JSON.parse(localStorage.getItem('names'));
         var scores = JSON.parse(localStorage.getItem('scores'));
         var i = names.includes(this.playersName);
-        if(i) scores[names.indexOf(this.playersName)] = this.score;
+        if(i && this.score > scores[names.indexOf(this.playersName)]) scores[names.indexOf(this.playersName)] = this.score;
         else {names.push(this.playersName); scores.push(this.score);}
 
 
@@ -73,7 +73,7 @@ export class Node
             var maxIndex = i;
             for(var j = i + 1; j < scores.length; j++)
             {
-                if(scores[maxIndex] < scores[j]) maxIndex = j;
+                if(scores[maxIndex] > scores[j]) maxIndex = j;
             }
             if(maxIndex != i)
             {
@@ -82,15 +82,15 @@ export class Node
             }
         }
 
-        for(var i = 1; i <= 8 ; i++)
+        for(var i = 0,  j = scores.length  - 8 ; i < 8 ; i++, j++)
         {
             var row = table.insertRow(0);
 
             var cell1 = row.insertCell(0);
             var cell2 = row.insertCell(1);
 
-            cell1.innerHTML = names[scores.length - i];
-            cell2.innerHTML = scores[scores.length -i];
+            cell1.innerHTML = names[j];
+            cell2.innerHTML = scores[j];
         }
 
         var row = table.insertRow(0);
@@ -98,6 +98,9 @@ export class Node
         var cell2 = row.insertCell(1);
         cell1.innerHTML = "Player"
         cell2.innerHTML = "Score";
+
+        console.log(names);
+        console.log(scores);
     }
     killMyChilds()
     {

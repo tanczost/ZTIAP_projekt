@@ -148,7 +148,7 @@ export class Screen extends canvasFunctions
 
         if(i !=  this.myChilds.length) //if i ==  this.myChilds.length player doesnt have collision 
         {
-            this.life--;
+            //this.life--;
             if(this.life > 0 && this.sound) this.contactSound.play();
             else if(this.sound) this.gameoverSound.play();
 
