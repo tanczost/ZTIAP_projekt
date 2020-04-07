@@ -53,7 +53,7 @@ window.onkeyup = (e) =>  //movement
     if(e.keyCode == 32) myGame.shot = true;
 }
 
-function main()
+export function main()
 {
     switch (myGame.gameMode)
     {
@@ -66,6 +66,7 @@ function main()
             var dt = (now - time) / 100;
             time = now;
             myGame.game(dt);
+            requestAnimationFrame(main);
             break;
 
         case 2: //restart screen
@@ -75,14 +76,11 @@ function main()
         case 3: //help screen
             myGame.helpScreen();
             break;
-
         case 4: //score screen
             myGame.scoreScreen();
             break;
         default:
             myGame.pauseScreen();
     }
-
-    requestAnimationFrame(main);
 }
 

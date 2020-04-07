@@ -1,4 +1,4 @@
-//import { myGame } from './index';
+import { main } from './index';
 
 
 export class Buttons
@@ -19,11 +19,11 @@ export class Buttons
         this.button.id = this.id;
         this.button.innerHTML =this.inner;
         parent = this.parent;
-        this.button.onclick = function(){ parent.gameMode = Mode;};
+        this.button.onclick = function(){ parent.gameMode = Mode; main();};
         document.body.appendChild(this.button);
 
     }
-    change(changeType, value, object)
+    change(changeType, value)
     {
         parent = this.parent;
         switch(changeType)
@@ -35,7 +35,7 @@ export class Buttons
                 this.button.innerHTML = value;
                 break;
             case ("onclick"):
-                this.button.onclick = function(){parent.gameMode = value;};
+                this.button.onclick = function(){parent.gameMode = value; main();};
                 break;
         }
     }
