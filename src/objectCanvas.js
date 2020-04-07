@@ -1,6 +1,5 @@
 import { Node } from './node';
 
-
 export class canvasFunctions extends Node
 {
     constructor(name, x, y, color)
@@ -14,7 +13,6 @@ export class canvasFunctions extends Node
         this.context.translate(x , y);
         this.context.rotate(angle);
         this.context.drawImage(image, width / -2, height / -2);
-        //this.context.strokeRect(width/-2, height/-2, width, height);
         this.context.restore();
     }
     creatText(x, y, pixel, color, text)
@@ -32,7 +30,7 @@ export class canvasFunctions extends Node
         this.context.fill();
         this.context.stroke();
     }
-    clear(x, y, width, height,color)
+    clear(x, y, width, height)
     {
         this.context.clearRect(x, y, width, height);
     }

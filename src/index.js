@@ -4,8 +4,8 @@ import { myImage} from './myimage';
 
 //global variables
 var time, myGame, numOfBullets = 0;
-//localStorage.setItem('names', JSON.stringify([]));
-//localStorage.setItem('scores', JSON.stringify([]));
+localStorage.setItem('names', JSON.stringify([]));
+localStorage.setItem('scores', JSON.stringify([]));
 
 
 
@@ -81,6 +81,7 @@ export function main()
             break;
         default:
             myGame.pauseScreen();
+            requestAnimationFrame(main);
     }
 }
 

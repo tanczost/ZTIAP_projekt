@@ -15,27 +15,20 @@ export class Node
     {
         this.myChilds.push(object);
     }
-    notify(parent)
+    killMyChildren()
     {
-
-        if(!parent) console.log("I'm root, my name is "+this.name);
-
-        else console.log("I'm child of "+parent+", my name is "+this.name);
-
-        if(this.myChilds.length == 0)
+        for(var i = 0; i < this.myChilds.length; i++)
         {
-            console.log("I've no childs");
-            return;
-        }
-        else
-        {
-            var parent = this.name;
+            var object = this.myChilds[i];
 
-            for(var i = 0; i < this.myChilds.length; i++)
+            if(object.x < -40 || object.x > 1100 || object.y < -40 || object.y > 600)
             {
-                if(this.myChilds[i]) this.myChilds[i].notify(parent);
-                
+                var index = this.myChilds.indexOf(object);
+                this.myChilds.splice(index, 1);
+                continue;
             }
+
+            object.killMyChildren();
         }
     }
     movement(dt)
@@ -102,21 +95,28 @@ export class Node
         console.log(names);
         console.log(scores);
     }
-    killMyChilds()
+    
+    notify(parent)
     {
-        for(var i = 0; i < this.myChilds.length; i++)
+
+        if(!parent) console.log("I'm root, my name is "+this.name);
+
+        else console.log("I'm child of "+parent+", my name is "+this.name);
+
+        if(this.myChilds.length == 0)
         {
-            var object = this.myChilds[i];
+            console.log("I've no childs");
+            return;
+        }
+        else
+        {
+            var parent = this.name;
 
-            if(object.x < -40 || object.x > 1100 || object.y < -40 || object.y > 600)
+            for(var i = 0; i < this.myChilds.length; i++)
             {
-                var index = this.myChilds.indexOf(object);
-                this.myChilds.splice(index, 1);
-                continue;
+                if(this.myChilds[i]) this.myChilds[i].notify(parent);
+                
             }
-
-            object.killMyChilds();
         }
     }
-    
 }

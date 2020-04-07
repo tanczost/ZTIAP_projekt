@@ -19,17 +19,31 @@ export class myImage extends canvasFunctions
         {
              this.context.drawImage(this.image, this.x, this.y);
         } 
-        else
+        else if(this.type == "player")
         {
             if((this.speed < 0 && this.speed > -2) || (this.speed > 0 && this.speed < 2)) this.speed *= 0.995;
             this.angle += this.moveAngle * Math.PI / 180;
             this.x += this.speed* Math.sin(this.angle);
             this.y -= this.speed * Math.cos(this.angle);
-            
-            /*if(!(this.x + newX > 1000 || this.x + newX <= 0 || this.y - newY > 500 || this.y - newY <= 0))
+            console.log(this.x);
+            switch(true)
             {
-                this.x += newX; this.y -= newY;
-            }*/
+                case(this.x > 1000):
+                    this.x = 0; break;
+                case(this.x < 0):
+                    this.x = 1000; break;
+                case(this.y > 500):
+                    this.y = 0; break;
+                case(this.y < 0):
+                    this.y = 500; break;
+            }
+            this.rotateObject(this.x, this.y, this.width, this.height, this.angle, this.image);
+        }
+        else
+        { 
+            this.angle += this.moveAngle * Math.PI / 180;
+            this.x += this.speed* Math.sin(this.angle);
+            this.y -= this.speed * Math.cos(this.angle);
             this.rotateObject(this.x, this.y, this.width, this.height, this.angle, this.image);
         }
     }

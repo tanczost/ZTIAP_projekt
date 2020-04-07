@@ -14,7 +14,7 @@ export class Screen extends canvasFunctions
         this.frames = 0;
         this.playersName = false;
         this.life = 0;
-        this.sound = false; //sound
+        this.sound = true; //sound
         this.shot = true;
         this.gameMode = 0;
 
@@ -58,7 +58,7 @@ export class Screen extends canvasFunctions
         this.add(this.backGround = new myImage(0, 0, 750, 500, '../images/background.png', "bg", "Background"));  //creat background
         this.add(this.lifeImg = new myImage(100, 100, 128, 32, '../images/life3.png',"none", "Life")); 
         this.add(this.showScore = new Text(150, 70, "white", "50px", "Score"));
-        this.add( this.player = new myImage(500, 250, 38, 28, '../images/jet.png',"none","player")); //creat players object
+        this.add( this.player = new myImage(500, 250, 38, 28, '../images/jet.png',"player","Player")); //creat players object
         
         this.title = new Text(500, 120, "red", "100px");
         
@@ -148,7 +148,7 @@ export class Screen extends canvasFunctions
 
         if(i !=  this.myChilds.length) //if i ==  this.myChilds.length player doesnt have collision 
         {
-            //this.life--;
+            this.life--;
             if(this.life > 0 && this.sound) this.contactSound.play();
             else if(this.sound) this.gameoverSound.play();
 
@@ -157,10 +157,11 @@ export class Screen extends canvasFunctions
             if(this.life == 0) this.gameMode = 2;
             else this.lifeImg.image.src = (this.life == 2 ? "../images/life2.png" : "../images/life1.png");
         }
-        this.killMyChilds(); //remove unecessery object
+
+        this.killMyChildren(); //remove unnecessary object
 
         
-        /*******SET SCORE ARGUMENTs********/
+        /*******SET SCOREs ARGUMENTs********/
         this.showScore.x = 150;
         this.showScore.y = 70;
         this.showScore.color = "white";
@@ -171,13 +172,11 @@ export class Screen extends canvasFunctions
     restartScreen()
     {
 
-        if(!this.playersName) 
-        {
-            this.playersName = prompt("Enter your name!");
-        }
+        if(!this.playersName) this.playersName = prompt("Enter your name!");
+        
         this.myChilds = this.myChilds.slice(0, 4); //delete bubbles from childs
 
-        if(this.frames) this.writeInStorage();
+        this.writeInStorage();
 
         this.player.speed = this.player.moveAngle =  this.frames = 0;
         this.backGround.creat();
