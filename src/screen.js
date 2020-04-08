@@ -55,7 +55,6 @@ export class Screen extends canvasFunctions
         //help Image
 
         //child objects
-        this.add(this.backGround = new myImage(0, 0, 750, 500, '../images/background.png', "bg", "Background"));  //creat background
         this.add(this.lifeImg = new myImage(100, 100, 128, 32, '../images/life3.png',"none", "Life")); 
         this.add(this.showScore = new Text(150, 70, "white", "50px", "Score"));
         this.add( this.player = new myImage(500, 250, 38, 28, '../images/jet.png',"player","Player")); //creat players object
@@ -65,7 +64,7 @@ export class Screen extends canvasFunctions
     }
     mainMenu()
     {
-        this.backGround.creat();
+        this.clear(0, 0, 1000, 500);
         this.title.creat("Bubble War");
         this.playersName = false;
         this.frames = 0;
@@ -86,7 +85,6 @@ export class Screen extends canvasFunctions
     }
     game(dt)
     {
-        
         if(this.frames == 0) this.score = 0; //set score to 0
         this.frames++; 
 
@@ -121,7 +119,7 @@ export class Screen extends canvasFunctions
 
         this.movement(dt); //move all objects
 
-        for(var i = 4; i < this.myChilds.length; i++)   //controll my shots and bubbles collison
+        for(var i = 3; i < this.myChilds.length; i++)   //controll my shots and bubbles collison
         {
             for(var j = 0; j < this.player.myChilds.length; j++)
             { 
@@ -138,7 +136,7 @@ export class Screen extends canvasFunctions
         }
 
         var i;
-        for(i = 4;  i < this.myChilds.length; i++) //controll players collision /w other objects
+        for(i = 3;  i < this.myChilds.length; i++) //controll players collision /w other objects
         {
             if(this.player.collison(this.myChilds[i])) break;
             var j = 0;
@@ -171,6 +169,7 @@ export class Screen extends canvasFunctions
     }
     restartScreen()
     {
+        this.clear(0, 0, 1000, 500);
 
         if(!this.playersName) this.playersName = prompt("Enter your name!");
         
@@ -179,7 +178,6 @@ export class Screen extends canvasFunctions
         this.writeInStorage();
 
         this.player.speed = this.player.moveAngle =  this.frames = 0;
-        this.backGround.creat();
         
         this.lifeImg.image.src = "../images/life3.png";
 
@@ -206,11 +204,8 @@ export class Screen extends canvasFunctions
     }
     scoreScreen()
     {
-        this.backGround.creat();
+        this.clear(0, 0, 1000, 500);
         document.getElementById('score').style.zIndex = 1;
-        
-
-        
 
         if(this.showScore.color != "red") this.readFromStorage();
         this.showScore.color = "red";
@@ -224,8 +219,8 @@ export class Screen extends canvasFunctions
     }
     helpScreen()
     {
-        this.backGround.creat();
-
+        
+        this.clear(0,0 ,1000, 500);
         for(var i = 0; i < this.buttons.length - 1; i++) //hide buttons
             this.buttons[i].change("zIndex", -1);
         this.backButton.change("zIndex", 1);

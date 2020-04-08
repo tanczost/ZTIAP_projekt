@@ -25,7 +25,6 @@ export class myImage extends canvasFunctions
             this.angle += this.moveAngle * Math.PI / 180;
             this.x += this.speed* Math.sin(this.angle);
             this.y -= this.speed * Math.cos(this.angle);
-            console.log(this.x);
             switch(true)
             {
                 case(this.x > 1000):

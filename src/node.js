@@ -49,7 +49,7 @@ export class Node
         var scores = JSON.parse(localStorage.getItem('scores'));
         var i = names.includes(this.playersName);
         if(i && this.score > scores[names.indexOf(this.playersName)]) scores[names.indexOf(this.playersName)] = this.score;
-        else {names.push(this.playersName); scores.push(this.score);}
+        else if(!i) {names.push(this.playersName); scores.push(this.score);}
 
 
         localStorage.setItem('names',JSON.stringify(names));
