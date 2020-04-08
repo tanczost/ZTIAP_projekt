@@ -171,7 +171,7 @@ export class Screen extends canvasFunctions
     {
         this.clear(0, 0, 1000, 500);
 
-        if(!this.playersName) this.playersName = prompt("Enter your name!");
+        while(!this.playersName) this.playersName = prompt("Enter your name!");
         
         this.myChilds = this.myChilds.slice(0, 4); //delete bubbles from childs
 
