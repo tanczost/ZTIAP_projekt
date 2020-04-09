@@ -47,9 +47,9 @@ export class Node
     {
         var names = JSON.parse(localStorage.getItem('names'));
         var scores = JSON.parse(localStorage.getItem('scores'));
-        var i = names.includes(this.playersName);
-        if(i && this.score > scores[names.indexOf(this.playersName)]) scores[names.indexOf(this.playersName)] = this.score;
-        else if(!i) {names.push(this.playersName); scores.push(this.score);}
+        var exist = names.includes(this.playersName);
+        if(exist && this.score > scores[names.indexOf(this.playersName)]) scores[names.indexOf(this.playersName)] = this.score;
+        else if(!exist) {names.push(this.playersName); scores.push(this.score);}
 
 
         localStorage.setItem('names',JSON.stringify(names));
@@ -60,14 +60,11 @@ export class Node
         var names = JSON.parse(localStorage.getItem('names'));
         var scores = JSON.parse(localStorage.getItem('scores'));
         var table = document.getElementById('scoreTable');
-        
+        table.innerHTML = "";
         for(var i = 0; i < scores.length; i++) //sortovanie score
         {
             var maxIndex = i;
-            for(var j = i + 1; j < scores.length; j++)
-            {
-                if(scores[maxIndex] > scores[j]) maxIndex = j;
-            }
+            for(var j = i + 1; j < scores.length; j++) if(scores[maxIndex] < scores[j]) maxIndex = j;
             if(maxIndex != i)
             {
                 [scores[maxIndex], scores[i]] = [scores[i], scores[maxIndex]];
@@ -75,9 +72,14 @@ export class Node
             }
         }
 
-        for(var i = 0,  j = scores.length  - 8 ; i < 8 ; i++, j++)
+        /*while(table.hasChildNodes())
         {
-            var row = table.insertRow(0);
+            table.deleteRow(-1);
+        }*/
+
+        for(var i = 0,  j = 0 ; i < 8 && j < scores.length ; i++, j++)
+        {
+            var row = table.insertRow(-1);
 
             var cell1 = row.insertCell(0);
             var cell2 = row.insertCell(1);

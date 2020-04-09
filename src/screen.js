@@ -14,7 +14,7 @@ export class Screen extends canvasFunctions
         this.frames = 0;
         this.playersName = false;
         this.life = 0;
-        this.sound = true; //sound
+        this.sound = false; 
         this.shot = true;
         this.gameMode = 0;
 
@@ -123,12 +123,12 @@ export class Screen extends canvasFunctions
         {
             for(var j = 0; j < this.player.myChilds.length; j++)
             { 
-                if(this.myChilds[i].collison(this.player.myChilds[j])) //if collision true
+                if(this.player.myChilds[j] && this.myChilds[i] && this.myChilds[i].collison(this.player.myChilds[j])) //if collision true
                 {
                     if(this.sound)  this.matchSound.play();
                     var index = this.myChilds.indexOf(this.myChilds[i]);
                     this.myChilds.splice(index, 1);
-                    index = this.player.myChilds.indexOf(this.player.myChilds[i]);
+                    index = this.player.myChilds.indexOf(this.player.myChilds[j]);
                     this.player.myChilds.splice(index, 1);
                     this.score += 10; 
                 }
