@@ -72,10 +72,6 @@ export class Node
             }
         }
 
-        /*while(table.hasChildNodes())
-        {
-            table.deleteRow(-1);
-        }*/
 
         for(var i = 0,  j = 0 ; i < 8 && j < scores.length ; i++, j++)
         {

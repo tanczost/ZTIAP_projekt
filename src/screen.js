@@ -4,6 +4,7 @@ import { canvasFunctions } from './objectCanvas';
 import {Text } from './text'
 import { Circle } from './circle';
 
+
 export class Screen extends canvasFunctions
 {
     constructor(name)
@@ -14,31 +15,20 @@ export class Screen extends canvasFunctions
         this.frames = 0;
         this.playersName = false;
         this.life = 0;
-        this.sound = false; 
+        this.sound = true; 
         this.shot = true;
         this.gameMode = 0;
 
 
-        //div buttons
+        //buttons
         this.buttons = [];
         this.buttons.push(this.startButton = new Buttons("div", "startButton", "Start", 1, this));
         this.buttons.push(this.helpButton =  new Buttons("div", "helpButton", "Help", 3, this));
         this.buttons.push(this.scoreButton = new Buttons("div", "scoreButton", "Score", 4, this));
         this.buttons.push(this.backButton = new Buttons("div", "backButton", "Main Menu", 0, this));
+        this.buttons.push(this.statusButton = new Buttons("img", "statusButton", "../images/pause.png" , 5, this));
+        this.buttons.push(this.audioButton = new Buttons("img", "audioButton", "../images/soundon.png" , false, this));
         this.backButton.change("zIndex", -1);
-        //div buttons
-
-        //img buttons
-        this.statusButton = document.createElement("img");
-        this.statusButton.src = "../images/pause.png"
-        this.statusButton.id = "statusButton";
-        document.body.appendChild(this.statusButton);
-
-        this.audioButton = document.createElement("img");
-        this.audioButton.src ="../images/soundon.png"
-        this.audioButton.id = "audioButton";
-        document.body.appendChild(this.audioButton);
-        //img buttons
 
         //audio
         this.shotSound = new Audio("../sounds/strela.mp3");
@@ -70,10 +60,11 @@ export class Screen extends canvasFunctions
         this.frames = 0;
 
         /*button settings*/
-        for(var i = 0; i < this.buttons.length - 1; i++) this.buttons[i].change("zIndex", 1); //show buttons
+        for(var i = 0; i < 3; i++) this.buttons[i].change("zIndex", 1); //show buttons
+        for(var i = 3; i < this.buttons.length; i++) this.buttons[i].change("zIndex", -1); //show buttons
+        
         document.getElementById('score').style.zIndex = -1;
-        this.backButton.change("zIndex", -1);
-        this.statusButton.style.zIndex = this.audioButton.style.zIndex = this.helpImg.style.zIndex = -1; 
+        this.helpImg.style.zIndex = -1; 
 
         this.helpButton.change("inner", "Help");
         this.helpButton.change("onclick", 3, this);
@@ -87,18 +78,17 @@ export class Screen extends canvasFunctions
     {
         if(this.frames == 0) this.score = 0; //set score to 0
         this.frames++; 
-
-        /*hide  buttons*/
+       
         for(var i = 0; i < this.buttons.length; i++) this.buttons[i].change("zIndex", -1);
-        /********/
-               
-        //image buttons settings      
-        this.statusButton.style.zIndex = this.audioButton.style.zIndex =  1;
-        this.statusButton.onclick = function(){gameMode = 5;};
-        this.statusButton.src = "../images/pause.png";
-        if(this.sound) this.audioButton.onclick = function(){this.sound = false; this.audioButton.src = "../images/soundoff.png";};
-        else this.audioButton.onclick = function(){this.sound = true; this.audioButton.src = "../images/soundon.png";};
-        //image buttons settings
+             
+        this.statusButton.change("zIndex", 1); 
+        this.statusButton.change("onclick", 5); 
+        this.statusButton.change("inner", "../images/pause.png" )
+
+        this.audioButton.change("zIndex", 1);
+        if(!this.sound){ this.audioButton.change("onclick", true);  this.audioButton.change("inner", "../images/soundoff.png");}
+        else {this.audioButton.change("onclick", false);  this.audioButton.change("inner", "../images/soundon.png");};
+        
 
         /***********LEVEL SWITCH************/
         switch(true)
@@ -144,7 +134,7 @@ export class Screen extends canvasFunctions
             if(j !=  this.myChilds[i].myChilds.length) break;
         }
 
-        if(i !=  this.myChilds.length) //if i ==  this.myChilds.length player doesnt have collision 
+        if(i !=  this.myChilds.length) //if i == this.myChilds.length then player didnt have collision 
         {
             this.life--;
             if(this.life > 0 && this.sound) this.contactSound.play();
@@ -157,7 +147,6 @@ export class Screen extends canvasFunctions
         }
 
         this.killMyChildren(); //remove unnecessary object
-
         
         /*******SET SCOREs ARGUMENTs********/
         this.showScore.x = 150;
@@ -181,7 +170,8 @@ export class Screen extends canvasFunctions
         
         this.lifeImg.image.src = "../images/life3.png";
 
-        this.statusButton.style.zIndex = this.audioButton.style.zIndex = -1;
+        this.statusButton.change("zIndex", -1); 
+        this.audioButton.change("zIndex", -1);
 
         this.helpButton.change("zIndex", 1);
         this.helpButton.change("inner", "Restart");
@@ -221,7 +211,7 @@ export class Screen extends canvasFunctions
     {
         
         this.clear(0,0 ,1000, 500);
-        for(var i = 0; i < this.buttons.length - 1; i++) //hide buttons
+        for(var i = 0; i < this.buttons.length ; i++) //hide buttons
             this.buttons[i].change("zIndex", -1);
         this.backButton.change("zIndex", 1);
         this.helpImg.style.zIndex = 1 ;
@@ -229,8 +219,8 @@ export class Screen extends canvasFunctions
     }
     pauseScreen()
     {
-        this.statusButton.onclick = function(){this.gameMode = 1;};
-        this.statusButton.src = "../images/play.png";
+        this.statusButton.change("onclick", 1);
+        this.statusButton.change("inner", "../images/play.png" )
 
     }
     levelOne()

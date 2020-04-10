@@ -17,9 +17,12 @@ export class Buttons
         var Mode = this.mode;
         this.button = document.createElement(this.type);
         this.button.id = this.id;
-        this.button.innerHTML =this.inner;
+        if(this.type == "img") this.button.src = this.inner;
+        else this.button.innerHTML =this.inner;
         parent = this.parent;
-        this.button.onclick = function(){ parent.gameMode = Mode; main();};
+        if(this.id == "audioButton") this.button.onclick = function(){ parent.sound = Mode;};
+        else if(this.type == "img") this.button.onclick = function(){ parent.gameMode = Mode; };
+        else this.button.onclick = function(){ parent.gameMode = Mode; main();};
         document.body.appendChild(this.button);
 
     }
@@ -32,10 +35,13 @@ export class Buttons
                 this.button.style.zIndex = value;
                 break;
             case ("inner"):
-                this.button.innerHTML = value;
+                if(this.type == "img") this.button.src = value;
+                else this.button.innerHTML = value;
                 break;
             case ("onclick"):
-                this.button.onclick = function(){parent.gameMode = value; main();};
+                if(this.id == "audioButton") this.button.onclick = function(){ parent.sound = value;};
+                else if(this.type == "img")this.button.onclick = function(){parent.gameMode = value;};
+                else this.button.onclick = function(){parent.gameMode = value; main();};
                 break;
         }
     }
