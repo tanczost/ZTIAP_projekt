@@ -45,7 +45,7 @@ export class Screen extends canvasFunctions
         //help Image
 
         //child objects
-        this.add(this.lifeImg = new myImage(100, 100, 128, 32, '../images/life3.png',"none", "Life")); 
+        this.add(this.lifeImg = new myImage(120, 100, 128, 32, '../images/life3.png',"none", "Life")); 
         this.add(this.showScore = new Text(150, 70, "white", "50px", "Score"));
         this.add( this.player = new myImage(500, 250, 38, 28, '../images/jet.png',"player","Player")); //creat players object
         
@@ -221,6 +221,9 @@ export class Screen extends canvasFunctions
     {
         this.statusButton.change("onclick", 1);
         this.statusButton.change("inner", "../images/play.png" )
+        this.helpButton.change("zIndex", 1);
+        this.helpButton.change("inner", "Resume");
+        this.helpButton.change("onclick", 1);
 
     }
     levelOne()

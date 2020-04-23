@@ -14,7 +14,7 @@ if(localStorage.length == 0)
 window.onload = function()
 {
     myGame = new Screen("Screen");
-    controller = new Control;
+    controller = new Control();
     time = Date.now();
     main();
 }
@@ -51,7 +51,7 @@ export function main()
             break;
         default:
             myGame.pauseScreen();
-            requestAnimationFrame(main);
+            //requestAnimationFrame(main);
     }
 }
 

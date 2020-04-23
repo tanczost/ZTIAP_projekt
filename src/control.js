@@ -1,15 +1,17 @@
-import { myImage} from './myimage';
+import { myImage } from './myimage';
+import { main } from './index';
 
-class Control
+
+export class Control
 {
     constructor()
     {
-        ;
+        this.none = false;
     }
     buttonDown(object, event)
     {
         if(event.keyCode == 27 && object.gameMode == 1) object.gameMode = 5; //pause
-        else if(event.keyCode == 27 && object.gameMode == 5) object.gameMode = 1; //play
+        else if(event.keyCode == 27 && object.gameMode == 5) {object.gameMode = 1; main();}//play
 
         if(event.keyCode == 77 &&  object.sound) {object.sound = false; object.audioButton.src = "../images/soundoff.png";}//mute
         else if(event.keyCode == 77 && !object.sound){object.sound = true; object.audioButton.src = "../images/soundon.png";}//unmute
@@ -22,7 +24,6 @@ class Control
         if(event.keyCode == 32 && object.shot) //shot
         {
             if(object.sound) object.shotSound.play();
-            numOfBullets++;
             object.player.add(new myImage(object.player.x + 2, object.player.y - 2, 5, 5, '../images/bullet.png', "none", "bullet"));
             object.player.myChilds[object.player.myChilds.length - 1].speed = 10;
             object.player.myChilds[object.player.myChilds.length - 1].angle = object.player.angle;
