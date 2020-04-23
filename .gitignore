@@ -2,3 +2,5 @@ game.zip
 images
 node_modules
 sounds
+*.pdf
+*.zip

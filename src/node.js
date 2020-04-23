@@ -89,11 +89,7 @@ export class Node
         var cell2 = row.insertCell(1);
         cell1.innerHTML = "Player"
         cell2.innerHTML = "Score";
-
-        console.log(names);
-        console.log(scores);
     }
-    
     notify(parent)
     {
 

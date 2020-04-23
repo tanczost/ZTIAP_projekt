@@ -4,10 +4,12 @@ import { myImage} from './myimage';
 
 //global variables
 var time, myGame, numOfBullets = 0;
-//localStorage.setItem('names', JSON.stringify([]));
-//localStorage.setItem('scores', JSON.stringify([]));
 
-
+if(localStorage.length == 0)
+{
+    localStorage.setItem('names', JSON.stringify([]));
+    localStorage.setItem('scores', JSON.stringify([]));
+}
 
 window.onload = function()
 {
@@ -38,7 +40,6 @@ window.onkeydown = (e) =>
         myGame.player.myChilds[myGame.player.myChilds.length - 1].speed = 10;
         myGame.player.myChilds[myGame.player.myChilds.length - 1].angle = myGame.player.angle;
         myGame.shot = false;
-        //myGame.notify();
     }
     
 }
