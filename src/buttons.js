@@ -3,13 +3,14 @@ import { main } from './index';
 
 export class Buttons
 {
-    constructor(type, id, inner, gamemode, object)
+    constructor(type, id, inner, gamemode, object, commands)
     {
         this.type = type;
         this.id = id;
         this.inner = inner;
         this.mode = gamemode;
         this.parent = object;
+        this.commands = commands;
         this.creat();
     }
     creat()
