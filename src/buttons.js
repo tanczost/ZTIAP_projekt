@@ -18,6 +18,7 @@ export class Buttons
         var Mode = this.mode;
         this.button = document.createElement(this.type);
         this.button.id = this.id;
+        this.button.className = "button";
         if(this.type == "img") this.button.src = this.inner;
         else this.button.innerHTML =this.inner;
         parent = this.parent;

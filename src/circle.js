@@ -20,8 +20,15 @@ export class Circle extends canvasFunctions
 
     attack(object)
     {
-        var vector = [(object.x -  -50 * Math.sin(object.angle))- this.x, (object.y + -50 * Math.cos(object.angle)) - this.y];
-        this.add(new Bullet(this.x, this.y, vector[0], vector[1], 5, "green"));
+        this.color = "green";
+        setTimeout(this.attackEnd, 2000, object, this);
+        
+    }
+    attackEnd(object, me)
+    {
+        var vector = [(object.x -  -50 * Math.sin(object.angle))- me.x, (object.y + -50 * Math.cos(object.angle)) - me.y];
+        me.add(new Bullet(me.x, me.y, vector[0], vector[1], 5, "green"));
+        me.color = "red";
     }
     collison(object) //controll collision
     {

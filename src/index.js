@@ -5,14 +5,13 @@ import { Control } from './control';
 //global variables
 var time, myGame, controller;
 
-if(localStorage.length == 0)
-{
-    localStorage.setItem('names', JSON.stringify([]));
-    localStorage.setItem('scores', JSON.stringify([]));
-}
-
 window.onload = function()
 {
+    if(localStorage.length == 0)
+    {
+    localStorage.setItem('names', JSON.stringify([]));
+    localStorage.setItem('scores', JSON.stringify([]));
+    }
     myGame = new Screen("Screen");
     controller = new Control();
     time = Date.now();
