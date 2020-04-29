@@ -59,9 +59,10 @@ export class Screen extends canvasFunctions
 
         /*button settings*/
         this.changeButtons("mainMenu");
-         this.helpImg.style.zIndex = document.getElementById('score').style.zIndex = -1;
+        this.helpImg.style.zIndex = document.getElementById('score').style.zIndex = -1;
         /***************/
 
+        /*set scores params */
         this.showScore.x = 150;
         this.showScore.y = 70;
         this.life = 3;
@@ -123,7 +124,7 @@ export class Screen extends canvasFunctions
         {
             this.life--;
             if(this.life > 0 && this.sound) this.contactSound.play();
-            else if(this.sound) this.gameoverSound.play();
+            //else if(this.sound) this.gameoverSound.play();
 
             this.player.x = Math.floor(Math.random() * 900); this.player.y = Math.floor(Math.random() * 400);
 
@@ -144,8 +145,11 @@ export class Screen extends canvasFunctions
     restartScreen()
     {
         this.clear(0, 0, 1000, 500);
-
-        while(!this.playersName) this.playersName = prompt("Enter your name!");
+        this.gameoverSound.play();
+        while(!this.playersName) 
+        {
+            this.playersName = prompt("Enter your name!");
+        }
         
         this.myChilds = this.myChilds.slice(0, 4); //delete bubbles from childs
 
