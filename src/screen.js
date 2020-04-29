@@ -75,7 +75,7 @@ export class Screen extends canvasFunctions
         if(!this.sound){ this.audioButton.change("onclick", true);  this.audioButton.change("inner", "../images/soundoff.png");}
         else {this.audioButton.change("onclick", false);  this.audioButton.change("inner", "../images/soundon.png");};
 
-        /***********LEVEL SWITCH************
+        /***********LEVEL SWITCH************/
         switch(true)
         {
             case(this.score <= 100):
@@ -89,7 +89,6 @@ export class Screen extends canvasFunctions
         }
         /***********************************/
 
-        this.levelThree();
 
         this.clear(0,0,1000,500); //clear the canvas
 
