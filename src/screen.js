@@ -44,7 +44,7 @@ export class Screen extends canvasFunctions
 
         //child objects
         this.add(this.lifeImg = new myImage(120, 100, 128, 32, '../images/life3.png',"none", "Life")); 
-        this.add(this.showScore = new Text(150, 70, "white", "50px", "Score"));
+        this.add(this.showScore = new Text(100, 70, "white", "40px", "Score"));
         this.add( this.player = new myImage(500, 250, 38, 28, '../images/jet.png',"player","Player")); //creat players object
         
         this.title = new Text(500, 120, "red", "100px");
@@ -56,6 +56,10 @@ export class Screen extends canvasFunctions
         this.title.creat("Bubble War");
         this.playersName = false;
         this.frames = 0;
+        this.myChilds = this.myChilds.slice(0, 3); //delete bubbles from childs
+        this.player.speed = this.player.moveAngle =  this.frames = 0;
+        this.lifeImg.image.src = "../images/life3.png";
+
 
         /*button settings*/
         this.changeButtons("mainMenu");
@@ -135,8 +139,8 @@ export class Screen extends canvasFunctions
         this.killMyChildren(); //remove unnecessary object
         
         /*******SET SCOREs ARGUMENTs********/
-        this.showScore.x = 150;
-        this.showScore.y = 70;
+        this.showScore.x = 130;
+        //this.showScore.y = 70;
         this.showScore.color = "white";
         this.showScore.text = "Score: "+this.score;
         /***********************************/
@@ -151,7 +155,7 @@ export class Screen extends canvasFunctions
             this.playersName = prompt("Enter your name!");
         }
         
-        this.myChilds = this.myChilds.slice(0, 4); //delete bubbles from childs
+        this.myChilds = this.myChilds.slice(0, 3); //delete bubbles from childs
 
         this.writeInStorage();
 

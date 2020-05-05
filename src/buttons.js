@@ -23,7 +23,6 @@ export class Buttons
         else this.button.innerHTML =this.inner;
         parent = this.parent;
         if(this.id == "audioButton") this.button.onclick = function(){ parent.sound = Mode;};
-        //else if(this.type == "img") this.button.onclick = function(){ parent.gameMode = Mode; };
         else this.button.onclick = function(){ parent.gameMode = Mode; main();};
         document.body.appendChild(this.button);
 
@@ -42,7 +41,6 @@ export class Buttons
                 break;
             case ("onclick"):
                 if(this.id == "audioButton") this.button.onclick = function(){ parent.sound = value;};
-                //else if(this.type == "img")this.button.onclick = function(){parent.gameMode = value;};
                 else this.button.onclick = function(){parent.gameMode = value; main();};
                 break;
         }
