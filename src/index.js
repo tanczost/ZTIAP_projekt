@@ -18,9 +18,11 @@ window.onload = function()
     main();
 }
 
-window.onkeydown = (e) => { if(myGame.gameMode == 1) controller.buttonDown(myGame, e);}
+window.onkeydown = (e) => { if(myGame.gameMode == 1 || e.keyCode == 27) controller.buttonDown(myGame, e);}
 
 window.onkeyup = (e) => {if(myGame.gameMode == 1) controller.buttonUp(myGame, e);}
+
+
 
 export function main()
 {

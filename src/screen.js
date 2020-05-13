@@ -19,6 +19,9 @@ export class Screen extends canvasFunctions
         this.shot = true;
         this.gameMode = 0;
 
+
+        this.explosion = new myImage(250, 250, 25, 25, '../images/explosion1.png', "none", "exp")
+
         //buttons
         this.buttons = [];
         this.buttons.push(new Buttons("div", "startButton", "Start", 1, this, command.startButton));
@@ -60,9 +63,14 @@ export class Screen extends canvasFunctions
         this.player.speed = this.player.moveAngle =  this.frames = 0;
         this.lifeImg.image.src = "../images/life3.png";
 
+        this.player.angle = 0;
+        this.player.x = 500;
+        this.player.y = 250;    
+
 
         /*button settings*/
         this.changeButtons("mainMenu");
+        document.getElementById("backButton").style.top = "250px";
         this.helpImg.style.zIndex = document.getElementById('score').style.zIndex = -1;
         /***************/
 
@@ -94,11 +102,12 @@ export class Screen extends canvasFunctions
         }
         /***********************************/
 
+       
+
 
         this.clear(0,0,1000,500); //clear the canvas
 
-        this.movement(dt); //move all objects
-
+       
         for(var i = 3; i < this.myChilds.length; i++)   //controll my shots and bubbles collison
         {
             for(var j = 0; j < this.player.myChilds.length; j++)
@@ -106,8 +115,18 @@ export class Screen extends canvasFunctions
                 if(this.player.myChilds[j] && this.myChilds[i] && this.myChilds[i].collison(this.player.myChilds[j])) //if collision true
                 {
                     if(this.sound)  this.matchSound.play();
-                    var index = this.myChilds.indexOf(this.myChilds[i]);
-                    this.myChilds.splice(index, 1);
+                    this.myChilds[i].life--;
+                    if(this.myChilds[i].life == 0)
+                    {
+                        if(this.score >= 150 && this.myChilds[i].color == "red")
+                        {
+                            this.add(this.creatBubble([this.myChilds[i].angle, this.myChilds[i].angle + 90],[this.myChilds[i].x, this.myChilds[i].x + 5], [this.myChilds[i].y, this.myChilds[i].y + 5], 8, "yellow", 2));  //angle interval, position_x interval, position_y interval
+                            this.add(this.creatBubble([this.myChilds[i].angle, this.myChilds[i].angle - 90],[this.myChilds[i].x, this.myChilds[i].x + 5], [this.myChilds[i].y, this.myChilds[i].y + 5], 8, "yellow", 2));  //angle interval, position_x interval, position_y interval
+
+                        }
+                        var index = this.myChilds.indexOf(this.myChilds[i]);
+                        this.myChilds.splice(index, 1);
+                    }
                     index = this.player.myChilds.indexOf(this.player.myChilds[j]);
                     this.player.myChilds.splice(index, 1);
                     this.score += 10; 
@@ -135,6 +154,7 @@ export class Screen extends canvasFunctions
             if(this.life == 0) this.gameMode = 2;
             else this.lifeImg.image.src = (this.life == 2 ? "../images/life2.png" : "../images/life1.png");
         }
+ this.movement(dt); //move all objects
 
         this.killMyChildren(); //remove unnecessary object
         
@@ -149,7 +169,8 @@ export class Screen extends canvasFunctions
     restartScreen()
     {
         this.clear(0, 0, 1000, 500);
-        this.gameoverSound.play();
+        document.getElementById("backButton").style.top = "400px";
+        if(this.sound) this.gameoverSound.play();
         while(!this.playersName) 
         {
             this.playersName = prompt("Enter your name!");
@@ -223,7 +244,7 @@ export class Screen extends canvasFunctions
     }
     levelTwo()
     {
-        if(this.frames % 15 ==0) //creat new bubble
+        if(this.frames % 25 ==0) //creat new bubble
         {
             var a = Math.floor(Math.random() * 4) + 1;
 
@@ -245,7 +266,7 @@ export class Screen extends canvasFunctions
     }
     levelThree()
     {
-        if(this.frames % 20 ==0) //creat new bubble
+        if(this.frames % 25 ==0) //creat new bubble
         {
             var a = Math.floor(Math.random() * 4) + 1;
 
@@ -268,7 +289,7 @@ export class Screen extends canvasFunctions
         {
             if(this.myChilds[i]) //if bubble exist
             {
-                if(this.frames % 200 == 0 && i % 5 == 0 ) this.myChilds[i].attack(this.player);
+                if(this.frames % 200 == 0 && i % 10 == 0 ) this.myChilds[i].attack(this.player);
             }
         }
     }

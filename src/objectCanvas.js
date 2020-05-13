@@ -26,7 +26,10 @@ export class canvasFunctions extends Node
     {
         this.context.beginPath();
         this.context.arc(x, y, radius ,0 , Math.PI * 2 );
-        this.context.fillStyle = color;
+        var grd = this.context.createRadialGradient(x, y, radius, x+radius, y+radius, radius/2);
+        grd.addColorStop(0, color);
+        grd.addColorStop(1, "white");
+        this.context.fillStyle = grd;
         this.context.fill();
         this.context.stroke();
     }

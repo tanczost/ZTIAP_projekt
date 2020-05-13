@@ -9,6 +9,8 @@ export class Node
         this.angle = 0;
         this.moveAngle = 0;
         this.color = color;
+        if(color == "red") this.life = 2;
+        else this.life = 1;
         this.myChilds = [];
     }
     add(object)
