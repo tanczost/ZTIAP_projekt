@@ -13,7 +13,7 @@ export class Buttons
         this.commands = commands;
         this.creat();
     }
-    creat()
+    creat() //creat new element
     {
         var Mode = this.mode;
         this.button = document.createElement(this.type);
@@ -27,7 +27,7 @@ export class Buttons
         document.body.appendChild(this.button);
 
     }
-    change(changeType, value)
+    change(changeType, value) //change elements attribute
     {
         parent = this.parent;
         switch(changeType)

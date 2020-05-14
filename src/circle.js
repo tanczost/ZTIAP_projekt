@@ -1,7 +1,6 @@
 import { canvasFunctions } from './objectCanvas';
 import { Bullet } from './bullet';
 
-
 export class Circle extends canvasFunctions
 {
     constructor(x, y, radius, color,name)
@@ -11,14 +10,13 @@ export class Circle extends canvasFunctions
         this.bubblesShot = false;
     }
 
-    creat()
+    creat() //redraw object
     {
         this.x += (this.speed * Math.sin(this.angle) * 1);
         this.y -= (this.speed * Math.cos(this.angle) * 1);
         this.createCircle(this.x, this.y, this.radius,this.color);
     }
-
-    attack(object)
+    attack(object) //creat new bullet
     {
         this.color = "green";
         setTimeout( () => {

@@ -4,10 +4,7 @@ import { main } from './index';
 
 export class Control
 {
-    constructor()
-    {
-        this.none = false;
-    }
+    constructor() {}
     buttonDown(object, event)
     {
         if(event.keyCode == 27 && object.gameMode == 1) object.gameMode = 5; //pause

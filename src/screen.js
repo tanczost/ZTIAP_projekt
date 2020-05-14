@@ -3,7 +3,7 @@ import { myImage } from './myimage';
 import { canvasFunctions } from './objectCanvas';
 import {Text } from './text'
 import { Circle } from './circle';
-import { command } from './variables';
+import { command } from './buttonCommands';
 
 
 export class Screen extends canvasFunctions
@@ -18,9 +18,6 @@ export class Screen extends canvasFunctions
         this.sound = true; 
         this.shot = true;
         this.gameMode = 0;
-
-
-        this.explosion = new myImage(250, 250, 25, 25, '../images/explosion1.png', "none", "exp")
 
         //buttons
         this.buttons = [];
@@ -62,11 +59,9 @@ export class Screen extends canvasFunctions
         this.myChilds = this.myChilds.slice(0, 3); //delete bubbles from childs
         this.player.speed = this.player.moveAngle =  this.frames = 0;
         this.lifeImg.image.src = "../images/life3.png";
-
         this.player.angle = 0;
         this.player.x = 500;
         this.player.y = 250;    
-
 
         /*button settings*/
         this.changeButtons("mainMenu");
@@ -74,7 +69,7 @@ export class Screen extends canvasFunctions
         this.helpImg.style.zIndex = document.getElementById('score').style.zIndex = -1;
         /***************/
 
-        /*set scores params */
+        /*set scores param */
         this.showScore.x = 150;
         this.showScore.y = 70;
         this.life = 3;
@@ -88,7 +83,7 @@ export class Screen extends canvasFunctions
         if(!this.sound){ this.audioButton.change("onclick", true);  this.audioButton.change("inner", "../images/soundoff.png");}
         else {this.audioButton.change("onclick", false);  this.audioButton.change("inner", "../images/soundon.png");};
 
-        /***********LEVEL SWITCH************/
+        //LEVEL SWITCH
         switch(true)
         {
             case(this.score <= 100):
@@ -100,13 +95,9 @@ export class Screen extends canvasFunctions
             default:
                 this.levelThree();
         }
-        /***********************************/
+        //LEVEL SWITCH
 
-       
-
-
-        this.clear(0,0,1000,500); //clear the canvas
-
+        
        
         for(var i = 3; i < this.myChilds.length; i++)   //controll my shots and bubbles collison
         {
@@ -114,10 +105,10 @@ export class Screen extends canvasFunctions
             { 
                 if(this.player.myChilds[j] && this.myChilds[i] && this.myChilds[i].collison(this.player.myChilds[j])) //if collision true
                 {
-                    if(this.sound)  this.matchSound.play();
                     this.myChilds[i].life--;
                     if(this.myChilds[i].life == 0)
                     {
+                        if(this.sound)  this.matchSound.play();
                         if(this.score >= 150 && this.myChilds[i].color == "red")
                         {
                             this.add(this.creatBubble([this.myChilds[i].angle, this.myChilds[i].angle + 90],[this.myChilds[i].x, this.myChilds[i].x + 5], [this.myChilds[i].y, this.myChilds[i].y + 5], 8, "yellow", 2));  //angle interval, position_x interval, position_y interval
@@ -147,23 +138,21 @@ export class Screen extends canvasFunctions
         {
             this.life--;
             if(this.life > 0 && this.sound) this.contactSound.play();
-            //else if(this.sound) this.gameoverSound.play();
 
-            this.player.x = Math.floor(Math.random() * 900); this.player.y = Math.floor(Math.random() * 400);
+            this.player.x = Math.floor(Math.random() * 900); this.player.y = Math.floor(Math.random() * 400); //new position
 
             if(this.life == 0) this.gameMode = 2;
             else this.lifeImg.image.src = (this.life == 2 ? "../images/life2.png" : "../images/life1.png");
         }
- this.movement(dt); //move all objects
-
+        
+        this.clear(0,0,1000,500); //clear the canvas
+        this.movement(dt); //redraw all objects
         this.killMyChildren(); //remove unnecessary object
         
-        /*******SET SCOREs ARGUMENTs********/
+        //SET SCOREs ARGUMENTs
         this.showScore.x = 130;
-        //this.showScore.y = 70;
         this.showScore.color = "white";
         this.showScore.text = "Score: "+this.score;
-        /***********************************/
 
     }
     restartScreen()
@@ -210,11 +199,9 @@ export class Screen extends canvasFunctions
     }
     helpScreen()
     {
-        
         this.clear(0,0 ,1000, 500);
         this.changeButtons("helpScreen");
         this.helpImg.style.zIndex = 1 ;
-
     }
     pauseScreen()
     {

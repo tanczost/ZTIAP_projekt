@@ -18,13 +18,11 @@ export class Bullet  extends canvasFunctions
         this.name = "bullet";
         
     }
-
-    creat(dt)
+    creat(dt) //redraw bullet
     {
         this.speed += (40 / this.length ) * dt;
-        this.x = this.para_x + (this.vector_x * this.speed);
+        this.x = this.para_x + (this.vector_x * this.speed); //calculate new pos
         this.y = this.para_y + (this.vector_y * this.speed);
         this.createCircle(this.x, this.y, this.width, this.color);
-        
     }
 }

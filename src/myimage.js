@@ -13,12 +13,9 @@ export class myImage extends canvasFunctions
         this.image.src = src;
         
     }
-    creat()
+    creat() //draw object
     {
-        if(this.type == "bg")
-        {
-             this.context.drawImage(this.image, this.x, this.y);
-        } 
+        if(this.type == "bg") this.context.drawImage(this.image, this.x, this.y);
         else if(this.type == "player")
         {
             if((this.speed < 0 && this.speed > -2) || (this.speed > 0 && this.speed < 2)) this.speed *= 0.995;
@@ -46,7 +43,7 @@ export class myImage extends canvasFunctions
             this.rotateObject(this.x, this.y, this.width, this.height, this.angle, this.image);
         }
     }
-    collison(object)
+    collison(object) //control collision
     {
         var vector = [this.x  + (1 * Math.cos(this.angle)) - object.x, this.y + (3 * Math.sin(this.angle)) - object.y];
         return (Math.sqrt(vector[0] * vector[0] + vector[1]*vector[1]) <=  this.width / 2 + 2 );

@@ -13,11 +13,11 @@ export class Node
         else this.life = 1;
         this.myChilds = [];
     }
-    add(object)
+    add(object) 
     {
         this.myChilds.push(object);
     }
-    killMyChildren()
+    killMyChildren() //remove childrens
     {
         for(var i = 0; i < this.myChilds.length; i++)
         {
@@ -33,7 +33,7 @@ export class Node
             object.killMyChildren();
         }
     }
-    movement(dt)
+    movement(dt)//function to move all objects
     {
         for(var i = 0; i < this.myChilds.length; i++)
         {
@@ -45,7 +45,7 @@ export class Node
             }
         }
     } 
-    writeInStorage()
+    writeInStorage() //write new score to localstorage
     {
         var names = JSON.parse(localStorage.getItem('names'));
         var scores = JSON.parse(localStorage.getItem('scores'));
@@ -57,7 +57,7 @@ export class Node
         localStorage.setItem('names',JSON.stringify(names));
         localStorage.setItem('scores',JSON.stringify(scores));
     }
-    readFromStorage()
+    readFromStorage() //read score table from localstorage
     {
         var names = JSON.parse(localStorage.getItem('names'));
         var scores = JSON.parse(localStorage.getItem('scores'));
@@ -91,28 +91,5 @@ export class Node
         var cell2 = row.insertCell(1);
         cell1.innerHTML = "Player"
         cell2.innerHTML = "Score";
-    }
-    notify(parent)
-    {
-
-        if(!parent) console.log("I'm root, my name is "+this.name);
-
-        else console.log("I'm child of "+parent+", my name is "+this.name);
-
-        if(this.myChilds.length == 0)
-        {
-            console.log("I've no childs");
-            return;
-        }
-        else
-        {
-            var parent = this.name;
-
-            for(var i = 0; i < this.myChilds.length; i++)
-            {
-                if(this.myChilds[i]) this.myChilds[i].notify(parent);
-                
-            }
-        }
     }
 }

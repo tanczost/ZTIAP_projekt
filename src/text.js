@@ -7,19 +7,13 @@ export class Text extends canvasFunctions
     {
         super(name, x, y, color);
         this.pixel = pixel;
-        this.text;
+        this.text = null;
     }
 
     creat(text)
     {
-        if(text)
-        {
-            var title = text;
-        }
-        else
-        {
-            var title = this.text
-        }
+        if(text) var title = text;
+        else var title = this.text
         this.creatText(this.x, this.y, this.pixel, this.color, title);
     }
 }
