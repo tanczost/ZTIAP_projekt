@@ -52,7 +52,7 @@ export class Node
         var exist = names.includes(this.playersName);
         if(exist && this.score > scores[names.indexOf(this.playersName)]) scores[names.indexOf(this.playersName)] = this.score;
         else if(!exist) {names.push(this.playersName); scores.push(this.score);}
-
+        
 
         localStorage.setItem('names',JSON.stringify(names));
         localStorage.setItem('scores',JSON.stringify(scores));
@@ -63,6 +63,9 @@ export class Node
         var scores = JSON.parse(localStorage.getItem('scores'));
         var table = document.getElementById('scoreTable');
         table.innerHTML = "";
+
+        if(scores.length == 0) return;
+
         for(var i = 0; i < scores.length; i++) //sortovanie score
         {
             var maxIndex = i;

@@ -6,7 +6,7 @@ var time, myGame, controller;
 
 window.onload = function() //initialisation
 {
-    if(localStorage.length == 0)
+    if(localStorage.length === 0)
     {
         localStorage.setItem('names', JSON.stringify([]));
         localStorage.setItem('scores', JSON.stringify([]));

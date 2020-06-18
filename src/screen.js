@@ -111,8 +111,15 @@ export class Screen extends canvasFunctions
                         if(this.sound)  this.matchSound.play();
                         if(this.score >= 150 && this.myChilds[i].color == "red")
                         {
-                            this.add(this.creatBubble([this.myChilds[i].angle, this.myChilds[i].angle + 90],[this.myChilds[i].x, this.myChilds[i].x + 5], [this.myChilds[i].y, this.myChilds[i].y + 5], 8, "yellow", 2));  //angle interval, position_x interval, position_y interval
-                            this.add(this.creatBubble([this.myChilds[i].angle, this.myChilds[i].angle - 90],[this.myChilds[i].x, this.myChilds[i].x + 5], [this.myChilds[i].y, this.myChilds[i].y + 5], 8, "yellow", 2));  //angle interval, position_x interval, position_y interval
+                            this.add(this.creatBubble(
+                                [this.myChilds[i].angle, this.myChilds[i].angle + 90],
+                                [this.myChilds[i].x, this.myChilds[i].x + 5], 
+                                [this.myChilds[i].y, this.myChilds[i].y + 5], 8, "yellow", 2
+                                ));  //angle interval, position_x interval, position_y interval
+                            this.add(this.creatBubble(
+                                [this.myChilds[i].angle, this.myChilds[i].angle - 90],
+                                [this.myChilds[i].x, this.myChilds[i].x + 5], 
+                                [this.myChilds[i].y, this.myChilds[i].y + 5], 8, "yellow", 2));  //angle interval, position_x interval, position_y interval
 
                         }
                         var index = this.myChilds.indexOf(this.myChilds[i]);
@@ -151,6 +158,8 @@ export class Screen extends canvasFunctions
         
         //SET SCOREs ARGUMENTs
         this.showScore.x = 130;
+        this.showScore.y = 70;
+
         this.showScore.color = "white";
         this.showScore.text = "Score: "+this.score;
 
